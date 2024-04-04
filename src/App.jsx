@@ -1,11 +1,15 @@
 import React from 'react'
+import Header from './components/header/Header'
+import Form from './components/form/Form'
+import Frame from './components/image-frame/Frame'
 
 function App() {
 
   return (
-    <h1 className="text-3xl font-bold underline">
-      Random Image!
-    </h1>
+    <>
+      <Header />
+      <Form className='pb-5'/>
+    </>
   )
 }
 

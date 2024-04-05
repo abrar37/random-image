@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Container from '../container/Container'
 import Frame from '../image-frame/Frame'
+import Input from '../Input'
 
 function Form({className}) {
 
@@ -12,8 +13,9 @@ function Form({className}) {
 
   const [link, setLink] = useState('https://source.unsplash.com/900x500/?nature')
 
-  function genetareImgLink(){
-    setLink(`https://source.unsplash.com/${imgValue.width}x${imgValue.height}/?${imgValue.topic}`);
+  function imgUpadatedValue(v) {
+    setLink(v + ",")
+    console.log(link)
   }
 
   return (
@@ -21,27 +23,34 @@ function Form({className}) {
 
       <form onSubmit={(e) => {
         e.preventDefault()
-        genetareImgLink()
+        setLink(`https://source.unsplash.com/${imgValue.width}x${imgValue.height}/?${imgValue.topic}`);
       }}>
         <div className='flex flex-row gap-2 justify-center mb-3'>
 
-          <div className='form-field'>
-            <label htmlFor='img-width'>Image Width</label>
-            <input type='number' id="img-width" placeholder='Enter in px' min="200"
-              onChange={(e) => setImgValue({...imgValue, width: e.target.value})} />
-          </div>
+          <Input 
+            label='Image Width'
+            id='img-width'
+            type='number'
+            placeholder='Enter in px'
+            onChangeFn={(e) => setImgValue({...imgValue, width: e.target.value})}
+          />
 
-          <div className='form-field'>
-            <label htmlFor='img-height'>Image Height</label>
-            <input type='number' id="img-height" placeholder='Enter in px' min="200" 
-              onChange={(e) => setImgValue({...imgValue, height: e.target.value})} />
-          </div>
 
-          <div className='form-field'>
-            <label htmlFor='img-topic'>Image Topic</label>
-            <input type='text' id='img-topic' placeholder='ie: Tech, Nature'
-              onChange={(e) => setImgValue({...imgValue, topic: e.target.value})} />
-          </div>
+          <Input 
+            label='Image Height'
+            id='img-height'
+            type='number'
+            placeholder='Enter in px'
+            onChangeFn={(e) => setImgValue({...imgValue, height: e.target.value})}
+          />
+
+          <Input 
+            label='Image Height'
+            id='img-topic'
+            type='text'
+            placeholder='ie: Tech, Nature'
+            onChangeFn={(e) => setImgValue({...imgValue, topic: e.target.value})}
+          />
 
           <button 
             type='submit' 
@@ -50,7 +59,7 @@ function Form({className}) {
         </div>
       </form>
 
-      <Frame imgLink={link}/>
+      <Frame imgLink={link} genetareImgLink={imgUpadatedValue}/>
     </Container>
   )
 }

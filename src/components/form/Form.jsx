@@ -13,9 +13,8 @@ function Form({className}) {
 
   const [link, setLink] = useState('https://source.unsplash.com/900x500/?nature')
 
-  function imgUpadatedValue(v) {
-    setLink(v + ",")
-    console.log(link)
+  function imgUpadatedValue(linkReload) {
+    setLink(linkReload + ",")
   }
 
   return (
@@ -25,7 +24,7 @@ function Form({className}) {
         e.preventDefault()
         setLink(`https://source.unsplash.com/${imgValue.width}x${imgValue.height}/?${imgValue.topic}`);
       }}>
-        <div className='flex flex-row gap-2 justify-center mb-3'>
+        <div className='flex flex-row gap-2 justify-center mb-3 items-end'>
 
           <Input 
             label='Image Width'
